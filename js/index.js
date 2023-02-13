@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const form = document.forms[0];
   const URLinput = form.elements[0];
   const alertError = document.querySelector('#alert-failed');
@@ -14,20 +14,28 @@ document.addEventListener('DOMContentLoaded', function() {
     alertError.classList.add('d-none');
     alertLoading.classList.remove('d-none');
     fetch(`https://open.spotify.com/oembed?url=${URLinput.value}`)
-    .then(response => {
-      alertLoading.classList.add('d-none');
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    }).then(responseJson => {
-      alertError.classList.add('d-none');
-      cardAlbum.classList.remove('d-none');
-      title.textContent = responseJson.title;
-      albumImg.src = responseJson.thumbnail_url;
-      downloadBtn.href = responseJson.thumbnail_url.replace('1e02', 'b273');
-    }).catch(error => {
-      alertError.classList.remove('d-none');
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      }).then(responseJson => {
+        alertError.classList.add('d-none');
+        cardAlbum.classList.remove('d-none');
+        title.textContent = responseJson.title;
+        albumImg.style.opacity = '.4';
+        setTimeout(() => {
+          albumImg.src = responseJson.thumbnail_url;
+          albumImg.onload = function () {
+            alertLoading.classList.add('d-none');
+            albumImg.style.opacity = '1';
+            extractColor(this);
+          }
+        }, 400);
+        downloadBtn.href = responseJson.thumbnail_url.replace('1e02', 'b273');
+      }).catch(error => {
+        alertLoading.classList.add('d-none');
+        alertError.classList.remove('d-none');
+      });
   })
 });

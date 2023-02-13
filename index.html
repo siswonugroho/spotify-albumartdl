@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="bg-light">
   <div class="container">
-    <nav class="navbar border-bottom py-3 mb-4 vstack text-center">
+    <nav class="navbar py-3 mb-4 vstack text-center">
       <h1 class="mx-auto">Spotify Album Art Downloader</h1>
       <p>Download Spotify album art in 640x640 resolution from a song URL.</p>
     </nav>
@@ -21,7 +21,7 @@
         <label for="songurl" class="form-label">Enter Song URL</label>
         <div class="row gy-2 gx-2 mb-3">
           <div class="col">
-            <input type="url" name="songurl" id="songurl" class="form-control w-100"
+            <input type="url" required name="songurl" id="songurl" class="form-control w-100"
               placeholder="https://open.spotify.com/track/xxxxx">
           </div>
           <div class="col-auto">
@@ -39,20 +39,22 @@
         <strong>Failed to get image.</strong> Make sure the song URL is correct and check if there is a problem with the
         internet connection.
       </div>
-      <div class="card d-none mb-3" id="card-img-album">
-        <div class="card-body">
+      <div class="card border-0 shadow d-none mb-3" id="card-img-album">
+        <div class="card-body px-4">
           <h2 class="mb-3">Download Album Art</h2>
           <div class="row gy-3">
             <div class="col col-md-auto">
-              <img src="" class="img-album mx-auto d-block" alt="Album art image"
-                onerror="this.onerror = null; this.src = 'img/noimage.png'">
+              <figure class="overflow-hidden">
+                <img src="" class="img-album rounded mx-auto d-block position-relative" alt="Album art image"
+                  onerror="this.onerror = null; this.src = 'img/noimage.png'">
+              </figure>
             </div>
             <div class="col-md">
               <div class="mb-3">
                 <p class="mb-0">Song title:</p>
                 <strong class="fs-4" id="song-title">Moonlight Sunrise</strong>
               </div>
-              <a href="#" id="download-link" class="btn btn-success">Download Image</a>
+              <a href="#" target="_blank" id="download-link" class="btn btn-success">Download Image</a>
             </div>
           </div>
         </div>
