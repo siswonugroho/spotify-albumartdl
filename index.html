@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify Album Art Downloader</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar border-bottom py-3 mb-4 vstack text-center">
+      <h1 class="mx-auto">Spotify Album Art Downloader</h1>
+      <p>Download Spotify album art in 640x640 resolution from a song URL.</p>
+    </nav>
+    <main class="min-vh-100">
+      <form id="url-form">
+        <label for="songurl" class="form-label">Enter Song URL</label>
+        <div class="row gy-2 gx-2 mb-3">
+          <div class="col">
+            <input type="url" name="songurl" id="songurl" class="form-control w-100"
+              placeholder="https://open.spotify.com/track/xxxxx">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-success">Get</button>
+          </div>
+        </div>
+      </form>
+      <div class="alert alert-info alert-dismissible fade show d-none" role="alert" id="alert-loading">
+        <div class="spinner-border spinner-border-sm" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <span class="mx-2">Getting image...</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show d-none" role="alert" id="alert-failed">
+        <strong>Failed to get image.</strong> Make sure the song URL is correct and check if there is a problem with the
+        internet connection.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="card d-none mb-3" id="card-img-album">
+        <div class="card-body">
+          <h2 class="mb-3">Download Album Art</h2>
+          <div class="row gy-3">
+            <div class="col col-md-auto">
+              <img src="" class="img-album mx-auto d-block" alt="Album art image"
+                onerror="this.onerror = null; this.src = 'img/noimage.png'">
+            </div>
+            <div class="col-md">
+              <div class="mb-3">
+                <p class="mb-0">Song title:</p>
+                <strong class="fs-4" id="song-title">Moonlight Sunrise</strong>
+              </div>
+              <a href="#" id="download-link" class="btn btn-success">Download Image</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="bg-light p-3">
+    <div class="container">
+      <p class="text-secondary">Download Spotify album art in 640x640 resolution from a song URL. You can get the song URL by clicking menu Share > Copy link from the song you want in Spotify app.
+      <br>
+      This is based on OEmbed URL trick which pretty complicated for some people and the image quality is very low
+      (300x300). So I tried to simplify that process and figured out how to get the higher quality image by modifying the
+      image URL.</p>
+      <p class="text-secondary">&copy; 2023 Sovana S</p>
+    </div>
+  </footer>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

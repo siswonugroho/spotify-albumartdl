@@ -1,0 +1,11 @@
+img.img-album {
+  max-width: 22rem;
+}
+@media screen and (max-width: 768px) {
+  #download-link {
+    width: 100%;
+  }
+  img.img-album {
+    max-width: 100%;
+  }
+}
