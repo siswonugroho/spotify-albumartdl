@@ -17,16 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => {
       alertLoading.classList.add('d-none');
       if (!response.ok) {
-        alertError.classList.remove('d-none');
+        throw new Error(response.statusText);
       }
       return response.json();
-    })
-    .then(responseJson => {
+    }).then(responseJson => {
       alertError.classList.add('d-none');
       cardAlbum.classList.remove('d-none');
       title.textContent = responseJson.title;
       albumImg.src = responseJson.thumbnail_url;
       downloadBtn.href = responseJson.thumbnail_url.replace('1e02', 'b273');
+    }).catch(error => {
+      alertError.classList.remove('d-none');
     });
   })
 });
